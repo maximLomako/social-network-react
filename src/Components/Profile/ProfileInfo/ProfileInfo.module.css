@@ -1,0 +1,13 @@
+
+.content {
+    grid-area: c;
+    background: orchid;
+}
+.content img {
+    width: 100%;
+    height: 200px;
+}
+
+.descriptionBlock {
+   padding: 10px;
+}

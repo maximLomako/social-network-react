@@ -2,6 +2,7 @@ import React from "react";
 import s from './Post.module.css';
 
 type MessagePropsType = {
+  key: number
   message: string
   likeCount: number
 }
@@ -14,7 +15,7 @@ function Post(props: MessagePropsType) {
       <img src="https://i.pinimg.com/originals/1a/11/13/1a11132fd33123ee4d02e05721eb47d6.png" alt="avatar"/>
       {props.message}
       <div>
-        <span>{props.likeCount}</span>
+        <span>likes: {props.likeCount}</span>
       </div>
     </div>
 

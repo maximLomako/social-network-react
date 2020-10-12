@@ -9,8 +9,8 @@ type MessagePropsType = {
 
 const Message = (props: MessagePropsType) => {
   return (
-    <div className={s.dialog}>
-      {props.message}
+    <div className={`${props.id % 2 !== 0 ? s.dialog : s.dialogL}`}>
+      <p className={s.dialogMessage}>{props.message}</p>
     </div>
   )
 }

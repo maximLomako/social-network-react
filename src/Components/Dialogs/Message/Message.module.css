@@ -1,8 +1,60 @@
+.dialog {
+    position: relative;
+    background: #CF5858;
+    border-radius: 10px;
+    background: thistle;
+    max-width: 200px;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    text-align: center;
+    margin-bottom: 15px;
 
-.messages {
-    padding: 10px;
 }
 
-.messages .message {
-    color: white;
+.dialog:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 17px 20px 20px 0;
+    border-color: transparent thistle;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: -16px;
+    top: 1px;
+}
+
+.dialogL {
+    position: relative;
+    background: #CF5858;
+    border-radius: 10px;
+    background: thistle;
+    max-width: 200px;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    text-align: center;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.dialogL:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 17px 0px 20px 20px;
+    border-color: transparent thistle;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: 211px;
+    top: 1px;
+}
+
+.dialogMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }

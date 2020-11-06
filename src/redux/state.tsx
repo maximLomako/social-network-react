@@ -1,43 +1,38 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = (state: StateType) => {
+  console.log('state is changed!')
+}
 
 export type PostsType = {
   id: number
   message: string
   likeCount: number
 }
-
 export type DialogsType = {
   id: number
   name: string
   avatar: string
 }
-
 export type MessagesType = {
   id: number
   message: string
 }
-
 export type FriendsType = {
   id: number
   name: string
   avatar: string
 }
-
 export type ProfilePageType = {
   posts: Array<PostsType>
   newPostText: string
 }
-
 export type DialogsPageType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
   newMessageText: string
 }
-
 export type SidebarType = {
   friends: Array<FriendsType>
 }
-
 export type StateType = {
   profilePage: ProfilePageType,
   dialogsPage: DialogsPageType
@@ -45,7 +40,7 @@ export type StateType = {
 
 }
 
-export const state = {
+export let state = {
   profilePage: {
     posts: [
       {id: 1, message: "It's my first post", likeCount: 21},
@@ -122,12 +117,12 @@ export const addPost = () => {
   }
   state.profilePage.posts.push(newPost);
   state.profilePage.newPostText='';
-  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText)
+  rerenderEntireTree(state)
 }
 
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText ;
-  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
+  rerenderEntireTree(state);
 }
 
 export const addMessage = () => {
@@ -137,10 +132,16 @@ export const addMessage = () => {
   }
   state.dialogsPage.messages.push(newMessage);
   state.dialogsPage.newMessageText='';
-  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText)
+  rerenderEntireTree(state)
 }
 
 export const updateNewMessageText = (newText: string) => {
   state.dialogsPage.newMessageText = newText ;
-  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
+  rerenderEntireTree(state);
 }
+
+export const subscribe = (observer: (state: StateType) => void) => {
+  rerenderEntireTree = observer;
+}
+
+//store - oop

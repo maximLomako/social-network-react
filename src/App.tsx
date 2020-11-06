@@ -8,32 +8,30 @@ import {Route} from 'react-router-dom';
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {addMessage, StateType, updateNewMessageText} from "./redux/state";
+import {StoreType} from "./redux/state";
+
 
 
 type AppPropsType = {
-  state: StateType
-  addPost: ()=>void
-  updateNewPostText: (newText: string) => void
-  addMessage: () => void,
-  updateNewMessageText: (newText: string) => void
+  store: StoreType
 }
 
 function App(props: AppPropsType) {
+  const state = props.store.getState();
   return (
       <div className='app-wrapper'>
         <Header/>
-        <Navbar state={props.state.sidebar}/>
+        <Navbar state={state.sidebar}/>
         <div className='app-wrapper-content'>
           <Route path='/profile' render={() => <Profile
-            profilePage={props.state.profilePage}
-            addPost={props.addPost}
-            updateNewPostText={props.updateNewPostText}
+            profilePage={state.profilePage}
+            addPost={props.store.addPost.bind(props.store)}
+            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
           />}/>
           <Route path='/dialogs' render={() => <Dialogs
-            state={props.state.dialogsPage}
-            addMessage={addMessage}
-            updateNewMessageText={updateNewMessageText}
+            state={state.dialogsPage}
+            addMessage={props.store.addMessage.bind(props.store)}
+            updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
           />}/>
           <Route path='/news' render={() => <News/>}/>
           <Route path='/music' render={() => <Music/>}/>

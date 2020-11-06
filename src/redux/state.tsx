@@ -122,25 +122,25 @@ export const addPost = () => {
   }
   state.profilePage.posts.push(newPost);
   state.profilePage.newPostText='';
-  rerenderEntireTree(state, addPost, updateNewPostText)
+  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText)
 }
 
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText ;
-  rerenderEntireTree(state, addPost, updateNewPostText);
+  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
 }
 
-// export const addMessage = () => {
-//   let newMessage = {
-//     id: 6,
-//     message: state.dialogsPage.newMessageText,
-//   }
-//   state.dialogsPage.messages.push(newMessage);
-//   state.dialogsPage.newMessageText='';
-//   rerenderEntireTree(state, addPost, updateNewPostText)
-// }
-//
-// export const updateNewMessageText = (newText: string) => {
-//   state.dialogsPage.newMessageText = newText ;
-//   rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
-// }
+export const addMessage = () => {
+  let newMessage = {
+    id: 6,
+    message: state.dialogsPage.newMessageText,
+  }
+  state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessageText='';
+  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText)
+}
+
+export const updateNewMessageText = (newText: string) => {
+  state.dialogsPage.newMessageText = newText ;
+  rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
+}

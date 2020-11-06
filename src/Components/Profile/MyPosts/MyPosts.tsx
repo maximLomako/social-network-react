@@ -16,8 +16,6 @@ function MyPosts(props: MyPostsPropsType) {
   const postsElements = props.posts
     .map(p => <Post key={p.id} message={p.message} likeCount={p.likeCount}/>)
 
-  const [textAreaInputValue, setTextAreaInputValue] = useState('');
-
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value;
 

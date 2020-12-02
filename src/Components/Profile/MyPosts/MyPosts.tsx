@@ -1,7 +1,11 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ActionsTypes, PostsType} from "../../../redux/state";
+import {
+  ActionsTypes,
+  addPostAC,
+  PostsType, updateNewPostTextAC,
+} from "../../../redux/state";
 
 
 type MyPostsPropsType = {
@@ -9,6 +13,7 @@ type MyPostsPropsType = {
   dispatch: (action: ActionsTypes) => void
   newPostText: string
 }
+
 
 function MyPosts(props: MyPostsPropsType) {
 
@@ -19,12 +24,12 @@ function MyPosts(props: MyPostsPropsType) {
     let text = e.currentTarget.value;
 
     if (text) {
-      props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text});
+      props.dispatch(updateNewPostTextAC(text));
     }
   }
 
   const addPost = () => {
-    props.dispatch({type: "ADD-POST"})
+    props.dispatch(addPostAC())
   }
   return (
     <div className={s.postBlock}>

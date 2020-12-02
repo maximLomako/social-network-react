@@ -1,3 +1,6 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 export type PostsType = {
   id: number
   message: string
@@ -35,14 +38,7 @@ export type StateType = {
   sidebar: SidebarType
 
 }
-export type AddPostActionType = {
-  type: "ADD-POST"
-}
-export type UpdateNewPostTextActionType = {
-  type: "UPDATE-NEW-POST-TEXT"
-  newText: string
-}
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
 export type StoreType = {
   _state: StateType
   addMessage: () => void
@@ -53,6 +49,10 @@ export type StoreType = {
   dispatch: (action: ActionsTypes) => void
 }
 
+
+export const addPostAC = () => ({type: ADD_POST} as const)
+export const updateNewPostTextAC = (text: string) =>
+  ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
 
 export const store: StoreType = {
   _state: {
@@ -126,7 +126,6 @@ export const store: StoreType = {
   _callSubscriber() {
     console.log('state is changed!')
   },
-
   subscribe(observer) {
     this._callSubscriber = observer
   },

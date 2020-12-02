@@ -9,11 +9,11 @@ type FriendsPropsType = {
 
 
 const Friends = (props: FriendsPropsType) => {
-const friendElement = props.state.map(f =><div key={f.id} className={s.friend}>
+const friendElement = props.state.map(f =>
+  <div key={f.id} className={s.friend}>
   <img className={s.friendsIcon} src={f.avatar} alt="icon"/>
   <span className={s.friendsName} >{f.name}</span>
 </div>)
-
   return (
     <div className={s.friends}>
       <h3 className={s.friendsTitle} >Friends</h3>

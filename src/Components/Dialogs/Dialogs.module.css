@@ -25,3 +25,7 @@
 .messages .message {
     color: white;
 }
+
+.textAreaBlock textarea {
+    resize: none;
+}

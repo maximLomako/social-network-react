@@ -1,5 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SEND_MESSAGE = "SEND-MESSAGE";
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 
 export type PostsType = {
   id: number
@@ -27,7 +29,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
-  newMessageText: string
+  newMessageBody: string
 }
 export type SidebarType = {
   friends: Array<FriendsType>
@@ -38,11 +40,12 @@ export type StateType = {
   sidebar: SidebarType
 
 }
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export type ActionsTypes = ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof sendMessageAC>
+  | ReturnType<typeof updateNewMessageBodyAC>
 export type StoreType = {
   _state: StateType
-  addMessage: () => void
-  updateNewMessageText: (newText: string) => void
   _callSubscriber: () => void
   subscribe: (observer: () => void) => void
   getState: () => StateType
@@ -53,6 +56,9 @@ export type StoreType = {
 export const addPostAC = () => ({type: ADD_POST} as const)
 export const updateNewPostTextAC = (text: string) =>
   ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
+export const sendMessageAC = () => ({type: SEND_MESSAGE} as const)
+export const updateNewMessageBodyAC = (text: string) =>
+  ({type: UPDATE_NEW_MESSAGE_BODY, body: text} as const)
 
 export const store: StoreType = {
   _state: {
@@ -69,7 +75,7 @@ export const store: StoreType = {
         {
           id: 1,
           name: 'Dimych',
-          avatar: 'https://www.clipartmax.com/png/full/17-174256_transparent-owl-with-book-png-clipart-picture-transparent-background-books-clipart.png'
+          avatar: "https://img.pngio.com/owl-png-clipart-animal-baby-baby-owl-cute-cute-owl-free-png-cute-baby-owl-png-432_428.jpg"
         },
         {
           id: 2,
@@ -95,14 +101,14 @@ export const store: StoreType = {
         {id: 4, message: 'Hey'},
         {id: 5, message: 'Bye'}
       ],
-      newMessageText: ''
+      newMessageBody: ''
     },
     sidebar: {
       friends: [
         {
           id: 1,
           name: 'Dimych',
-          avatar: 'https://www.clipartmax.com/png/full/17-174256_transparent-owl-with-book-png-clipart-picture-transparent-background-books-clipart.png'
+          avatar: 'https://img.pngio.com/owl-png-clipart-animal-baby-baby-owl-cute-cute-owl-free-png-cute-baby-owl-png-432_428.jpg'
         },
         {
           id: 2,
@@ -133,7 +139,7 @@ export const store: StoreType = {
     return this._state
   },
   dispatch(action) {
-    if (action.type === "ADD-POST") {
+    if (action.type === ADD_POST) {
       let newPost = {
         id: 5,
         message: this._state.profilePage.newPostText,
@@ -142,24 +148,20 @@ export const store: StoreType = {
       this._state.profilePage.posts.push(newPost);
       this._state.profilePage.newPostText = '';
       this._callSubscriber()
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber();
+    } else if (action.type === SEND_MESSAGE) {
+      let newMessage = {id: 6, message: this._state.dialogsPage.newMessageBody,
+      }
+      this._state.dialogsPage.messages.push(newMessage);
+      this._state.dialogsPage.newMessageBody = '';
+      this._callSubscriber()
+    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+      this._state.dialogsPage.newMessageBody = action.body;
       this._callSubscriber();
     }
   },
-  addMessage() {
-    let newMessage = {
-      id: 6,
-      message: this._state.dialogsPage.newMessageText,
-    }
-    this._state.dialogsPage.messages.push(newMessage);
-    this._state.dialogsPage.newMessageText = '';
-    this._callSubscriber()
-  },
-  updateNewMessageText(newText: string) {
-    this._state.dialogsPage.newMessageText = newText;
-    this._callSubscriber();
-  }
 }
 
 

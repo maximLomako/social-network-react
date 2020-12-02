@@ -1,13 +1,12 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostsType} from "../../../redux/state";
+import {ActionsTypes, PostsType} from "../../../redux/state";
 
 
 type MyPostsPropsType = {
   posts: Array<PostsType>
-  addPost: () => void
-  updateNewPostText: (newText: string) => void
+  dispatch: (action: ActionsTypes) => void
   newPostText: string
 }
 
@@ -20,12 +19,12 @@ function MyPosts(props: MyPostsPropsType) {
     let text = e.currentTarget.value;
 
     if (text) {
-      props.updateNewPostText(text);
+      props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text});
     }
   }
 
   const addPost = () => {
-    props.addPost()
+    props.dispatch({type: "ADD-POST"})
   }
   return (
     <div className={s.postBlock}>

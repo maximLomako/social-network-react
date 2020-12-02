@@ -4,7 +4,7 @@ import s from './Header.module.css';
 function Header() {
   return (
     <header className={s.header}>
-      <img src="https://www.uokpl.rs/fpng/f/513-5139461_library-of-owl.png" alt="logo"/>
+      <img src="https://smallimg.pngkey.com/png/small/97-975980_coruja-rosa-e-azul-cute-owls-png.png" alt="logo"/>
     </header>
   )
 }

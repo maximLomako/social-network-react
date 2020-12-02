@@ -3,9 +3,9 @@ import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {
   ActionsTypes,
-  addPostAC,
-  PostsType, updateNewPostTextAC,
+  PostsType,
 } from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 
 type MyPostsPropsType = {

@@ -8,12 +8,14 @@ import {Route} from 'react-router-dom';
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {StoreType} from "./redux/state";
+import {ActionsTypes, DialogsPageType, ProfilePageType, SidebarType, StoreType} from "./redux/store";
+import { CombinedState, Store } from 'redux';
+
 
 
 
 type AppPropsType = {
-  store: StoreType
+  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType; }>, ActionsTypes>
 }
 
 function App(props: AppPropsType) {
@@ -28,7 +30,8 @@ function App(props: AppPropsType) {
             dispatch = {props.store.dispatch.bind(props.store)}
           />}/>
           <Route path='/dialogs' render={() => <Dialogs
-            store={props.store}
+            dialogsPage={props.store.getState().dialogsPage}
+            dispatch = {props.store.dispatch.bind(props.store)}
           />}/>
           <Route path='/news' render={() => <News/>}/>
           <Route path='/music' render={() => <Music/>}/>

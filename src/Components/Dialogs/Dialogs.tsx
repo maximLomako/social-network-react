@@ -2,16 +2,14 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {
-  ActionsTypes,
-  DialogsPageType, StoreType
-} from "../../redux/store";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../redux/store";
 
 
 type DialogsPropsType = {
   dialogsPage: DialogsPageType
-  dispatch: (action: ActionsTypes) => void
+  updateNewMessageBody: (text: string) => void
+  sendMessage: () => void
+  newMessageBody: string
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -25,11 +23,11 @@ const Dialogs = (props: DialogsPropsType) => {
   const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value;
     if (text) {
-      props.dispatch(updateNewMessageBodyAC(text));
+      props.updateNewMessageBody(text)
     }
   }
   const onSendMessage = () => {
-    props.dispatch(sendMessageAC());
+    props.sendMessage();
   }
 
   return (
@@ -42,7 +40,7 @@ const Dialogs = (props: DialogsPropsType) => {
       </div>
       <div className={s.textAreaBlock}>
       <textarea placeholder="Enter yout message"
-                value={state.newMessageBody}
+                value={props.newMessageBody}
                 onChange={onMessageChange}></textarea>
         <button onClick={onSendMessage}>Send Message</button>
       </div>

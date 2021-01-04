@@ -1,39 +1,33 @@
 import React from "react";
-import {
-  ActionsTypes, DialogsPageType,
-  PostsType, ProfilePageType, SidebarType,
-} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {CombinedState, Store} from "redux";
+import StoreContext from "../../../StoreContext";
 
+function MyPostsContainer() {
 
-type MyPostsContainerPropsType = {
-  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType; }>, ActionsTypes>
-}
-
-
-function MyPostsContainer(props: MyPostsContainerPropsType) {
-
-  let state = props.store.getState().profilePage;
-
-  const onPostChange = (text: string) => {
-    if (text) {
-      let action = updateNewPostTextAC(text);
-      props.store.dispatch(action);
-
-    }
-  }
-
-  const addPost = () => {
-    props.store.dispatch(addPostAC())
-  }
 
   return (
-    <MyPosts updateNewPostText={onPostChange}
-             addPost={addPost}
-             posts={state.posts}
-             newPostText={state.newPostText}/>
+    <StoreContext.Consumer>
+      {(store) => {
+        if (store === null) {
+          return
+        }
+        let state = store.getState().profilePage;
+        const onPostChange = (text: string) => {
+          if (text) {
+            let action = updateNewPostTextAC(text);
+            store.dispatch(action);
+          }
+        }
+        const addPost = () => {
+          store.dispatch(addPostAC())
+        }
+        return <MyPosts updateNewPostText={onPostChange}
+                        addPost={addPost}
+                        posts={state.posts}
+                        newPostText={state.newPostText}/>
+      }}
+    </StoreContext.Consumer>
   )
 }
 

@@ -7,28 +7,16 @@ import {Route} from 'react-router-dom';
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {ActionsTypes, DialogsPageType, ProfilePageType, SidebarType} from "./redux/store";
-import {CombinedState, Store} from 'redux';
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
-
-type AppPropsType = {
-  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType; }>, ActionsTypes>
-}
-
-function App(props: AppPropsType) {
-  const state = props.store.getState();
+const App = () => {
   return (
     <div className='app-wrapper'>
       <Header/>
-      <Navbar state={state.sidebar}/>
+      {/*<Navbar state={state.sidebar}/>*/}
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={() => <Profile
-          store={props.store}
-        />}/>
-        <Route path='/dialogs' render={() => <DialogsContainer
-          store={props.store}
-        />}/>
+        <Route path='/profile' render={() => <Profile/>}/>
+        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
         <Route path='/news' render={() => <News/>}/>
         <Route path='/music' render={() => <Music/>}/>
         <Route path='/settings' render={() => <Settings/>}/>

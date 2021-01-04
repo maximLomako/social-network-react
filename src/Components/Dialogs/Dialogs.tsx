@@ -14,7 +14,6 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
   let state = props.dialogsPage;
-
   const dialogsElements = state.dialogs
     .map(d => <DialogItem key={d.id} name={d.name} id={d.id} avatar={d.avatar}/>)
   const messagesElements = state.messages
@@ -39,9 +38,9 @@ const Dialogs = (props: DialogsPropsType) => {
         {messagesElements}
       </div>
       <div className={s.textAreaBlock}>
-      <textarea placeholder="Enter yout message"
+      <textarea placeholder="Enter you message"
                 value={props.newMessageBody}
-                onChange={onMessageChange}></textarea>
+                onChange={onMessageChange}/>
         <button onClick={onSendMessage}>Send Message</button>
       </div>
     </div>

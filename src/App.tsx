@@ -8,12 +8,17 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import {ActionsTypes, DialogsPageType, ProfilePageType, SidebarType} from "./redux/store";
+import {CombinedState, Store} from 'redux';
 
-const App = () => {
+type AppPropsType = {
+  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType; }>, ActionsTypes>
+}
+const App = (props: AppPropsType) => {
   return (
     <div className='app-wrapper'>
       <Header/>
-      {/*<Navbar state={state.sidebar}/>*/}
+      <Navbar state={props.store.getState().sidebar}/>
       <div className='app-wrapper-content'>
         <Route path='/profile' render={() => <Profile/>}/>
         <Route path='/dialogs' render={() => <DialogsContainer/>}/>

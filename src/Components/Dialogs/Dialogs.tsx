@@ -9,7 +9,6 @@ type DialogsPropsType = {
   dialogsPage: DialogsPageType
   updateNewMessageBody: (text: string) => void
   sendMessage: () => void
-  newMessageBody: string
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -39,7 +38,7 @@ const Dialogs = (props: DialogsPropsType) => {
       </div>
       <div className={s.textAreaBlock}>
       <textarea placeholder="Enter you message"
-                value={props.newMessageBody}
+                value={props.dialogsPage.newMessageBody}
                 onChange={onMessageChange}/>
         <button onClick={onSendMessage}>Send Message</button>
       </div>

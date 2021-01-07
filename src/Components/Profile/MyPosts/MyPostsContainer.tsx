@@ -1,8 +1,8 @@
-import React from "react";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {ActionsTypes, StateType} from "../../../redux/store";
+
 export type DispatchType = (action: ActionsTypes) => void
 
 const mapStateToProps = (state: StateType) => ({

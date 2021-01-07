@@ -10,9 +10,10 @@ import Settings from "./Components/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import {ActionsTypes, DialogsPageType, ProfilePageType, SidebarType} from "./redux/store";
 import {CombinedState, Store} from 'redux';
+import UsersContainer from "./Components/Users/UsersContainer";
 
 type AppPropsType = {
-  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType; }>, ActionsTypes>
+  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType }>, ActionsTypes>
 }
 const App = (props: AppPropsType) => {
   return (
@@ -25,6 +26,7 @@ const App = (props: AppPropsType) => {
         <Route path='/news' render={() => <News/>}/>
         <Route path='/music' render={() => <Music/>}/>
         <Route path='/settings' render={() => <Settings/>}/>
+        <Route path='/users' render={() => <UsersContainer/>}/>
 
       </div>
     </div>

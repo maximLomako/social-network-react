@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 import {DispatchType} from "../Profile/MyPosts/MyPostsContainer";
-import Users from "./Users";
 import {followAC, setUsersAC, unFollowAC, UsersType} from "../../redux/users-reducer";
 import {StateType} from "../../redux/store";
+import Users from "./Users";
 
 const mapStateToProps = (state: StateType) => ({
   users: state.usersPage.users

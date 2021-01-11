@@ -1,6 +1,8 @@
 import React from "react";
 import {UsersType} from "../../redux/users-reducer";
 import s from './users.module.css'
+import axios from "axios";
+import userPhoto from '../../assets/images/user.webp'
 
 type UsersPropsType = {
   users: UsersType
@@ -11,40 +13,9 @@ type UsersPropsType = {
 
 const Users = (props: UsersPropsType) => {
   if (props.users.length === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        photoUrl: 'https://sun9-45.userapi.com/c9946/u157240103/e_a1ccb275.jpg?ava=1',
-        followed: true,
-        fullName: 'Petr',
-        status: 'I am a Petric',
-        location: {city: 'Molodechno', country: 'Belarus'}
-      },
-      {
-        id: 2,
-        photoUrl: 'https://sun9-45.userapi.com/c9946/u157240103/e_a1ccb275.jpg?ava=1',
-        followed: false,
-        fullName: 'Kolya',
-        status: 'I am a Raper from street',
-        location: {city: 'Moscow', country: 'Russia'}
-      },
-      {
-        id: 3,
-        photoUrl: 'https://sun9-45.userapi.com/c9946/u157240103/e_a1ccb275.jpg?ava=1',
-        followed: false,
-        fullName: 'Astanifka',
-        status: 'I like eat dranik',
-        location: {city: 'Kiev', country: 'Ukraine'}
-      },
-      {
-        id: 4,
-        photoUrl: 'https://sun9-45.userapi.com/c9946/u157240103/e_a1ccb275.jpg?ava=1',
-        followed: true,
-        fullName: 'Cyprian',
-        status: 'Looking for seeds',
-        location: {city: 'Lodz', country: 'Poland'}
-      }
-    ])
+    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+      props.setUsers(response.data.items)
+    });
   }
   return (
     <div>
@@ -52,7 +23,7 @@ const Users = (props: UsersPropsType) => {
         props.users.map(u => <div key={u.id}>
       <span>
         <div>
-          <img src={u.photoUrl} alt="user-img" className={s.userPhoto}/>
+          <img src={u.photos.small ? u.photos.small : userPhoto} alt="user-img" className={s.userPhoto}/>
         </div>
         <div>
           {u.followed
@@ -66,12 +37,12 @@ const Users = (props: UsersPropsType) => {
       </span>
           <span>
             <span>
-              <div>{u.fullName}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{u.location.country}</div>
-              <div>{u.location.city}</div>
+              <div>{'u.location.country'}</div>
+              <div>{'u.location.city'}</div>
             </span>
           </span>
         </div>)

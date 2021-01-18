@@ -1,13 +1,11 @@
 import {connect} from "react-redux";
-import {DispatchType} from "../Profile/MyPosts/MyPostsContainer";
-import s from './users.module.css'
 import {
-  followAC,
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  toggleIsFetchingAC,
-  unFollowAC,
+  follow,
+  setCurrentPage,
+  setTotalUsersCount,
+  setUsers,
+  toggleIsFetching,
+  unFollow,
   UsersType
 } from "../../redux/users-reducer";
 import {StateType} from "../../redux/store";
@@ -53,7 +51,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
     return (
       <>
         {this.props.isFetching
-          ? <Preloader /> : null}
+          ? <Preloader/> : null}
         <Users
           users={this.props.users}
           currentPage={this.props.currentPage}
@@ -75,26 +73,8 @@ const mapStateToProps = (state: StateType) => ({
   currentPage: state.usersPage.currentPage,
   isFetching: state.usersPage.isFetching
 })
-const mapDispatchToProps = (dispatch: DispatchType) => ({
-  follow: (userID: number) => {
-    dispatch(followAC(userID))
-  },
-  unFollow: (userID: number) => {
-    dispatch(unFollowAC(userID))
-  },
-  setUsers: (users: UsersType) => {
-    dispatch(setUsersAC(users))
-  },
-  setCurrentPage: (currentPage: number) => {
-    dispatch(setCurrentPageAC(currentPage))
-  },
-  setTotalUsersCount: (totalCount: number) => {
-    dispatch(setTotalUsersCountAC(totalCount))
-  },
-  toggleIsFetching: (isFetching: boolean) => {
-    dispatch(toggleIsFetchingAC(isFetching))
-  }
 
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching
+})(UsersContainer);

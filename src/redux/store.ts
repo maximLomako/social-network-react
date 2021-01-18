@@ -1,12 +1,12 @@
 import {addPostAC, updateNewPostTextAC} from "./profile-reducer";
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {
-  followAC,
+  follow,
   initialStateUsersType,
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setUsersAC, toggleIsFetchingAC,
-  unFollowAC
+  setCurrentPage,
+  setTotalUsersCount,
+  setUsers, toggleIsFetching,
+  unFollow
 } from "./users-reducer";
 
 export type PostsType = {
@@ -51,12 +51,12 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
   | ReturnType<typeof updateNewPostTextAC>
   | ReturnType<typeof sendMessageAC>
   | ReturnType<typeof updateNewMessageBodyAC>
-  | ReturnType<typeof followAC>
-  | ReturnType<typeof unFollowAC>
-  | ReturnType<typeof setUsersAC>
-  | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setTotalUsersCountAC>
-  | ReturnType<typeof toggleIsFetchingAC>
+  | ReturnType<typeof follow>
+  | ReturnType<typeof unFollow>
+  | ReturnType<typeof setUsers>
+  | ReturnType<typeof setCurrentPage>
+  | ReturnType<typeof setTotalUsersCount>
+  | ReturnType<typeof toggleIsFetching>
 
 export type StoreType = {
   _state: StateType

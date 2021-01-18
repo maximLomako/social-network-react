@@ -9,6 +9,7 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
   | ReturnType<typeof sendMessageAC>
   | ReturnType<typeof updateNewMessageBodyAC>
 
+
 export type DialogsPageType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>

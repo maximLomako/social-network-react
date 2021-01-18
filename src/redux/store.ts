@@ -1,4 +1,4 @@
-import {addPostAC, updateNewPostTextAC} from "./profile-reducer";
+import {addPostAC, ProfileUserType, updateNewPostTextAC} from "./profile-reducer";
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {
   follow,
@@ -31,6 +31,8 @@ export type FriendsType = {
 export type ProfilePageType = {
   posts: Array<PostsType>
   newPostText: string
+  profile: ProfileUserType | null
+
 }
 export type DialogsPageType = {
   dialogs: Array<DialogsType>

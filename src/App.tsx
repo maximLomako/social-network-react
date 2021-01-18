@@ -2,26 +2,21 @@ import React from 'react';
 import './App.css';
 import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
-import Profile from "./Components/Profile/Profile";
 import {Route} from 'react-router-dom';
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import {ActionsTypes, DialogsPageType, ProfilePageType, SidebarType} from "./redux/store";
-import {CombinedState, Store} from 'redux';
 import UsersContainer from "./Components/Users/UsersContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
-type AppPropsType = {
-  store: Store<CombinedState<{ profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebar: SidebarType }>, ActionsTypes>
-}
-const App = (props: AppPropsType) => {
+const App = () => {
   return (
     <div className='app-wrapper'>
       <Header/>
-      <Navbar state={props.store.getState().sidebar}/>
+      <Navbar/>
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={() => <Profile/>}/>
+        <Route path='/profile' render={() => <ProfileContainer/>}/>
         <Route path='/users' render={() => <UsersContainer/>}/>
         <Route path='/dialogs' render={() => <DialogsContainer/>}/>
         <Route path='/news' render={() => <News/>}/>

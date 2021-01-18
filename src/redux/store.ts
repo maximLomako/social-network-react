@@ -5,7 +5,7 @@ import {
   initialStateUsersType,
   setCurrentPageAC,
   setTotalUsersCountAC,
-  setUsersAC,
+  setUsersAC, toggleIsFetchingAC,
   unFollowAC
 } from "./users-reducer";
 
@@ -56,6 +56,7 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof setCurrentPageAC>
   | ReturnType<typeof setTotalUsersCountAC>
+  | ReturnType<typeof toggleIsFetchingAC>
 
 export type StoreType = {
   _state: StateType

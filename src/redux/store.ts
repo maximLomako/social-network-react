@@ -1,5 +1,5 @@
-import {addPostAC, ProfileUserType, updateNewPostTextAC} from "./profile-reducer";
-import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
+import {addPostAC, PostsType, ProfileUserType, updateNewPostTextAC} from "./profile-reducer";
+import {DialogsType, MessagesType, sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {
   follow,
   initialStateUsersType,
@@ -9,20 +9,9 @@ import {
   unFollow
 } from "./users-reducer";
 
-export type PostsType = {
-  id: number
-  message: string
-  likeCount: number
-}
-export type DialogsType = {
-  id: number
-  name: string
-  avatar: string
-}
-export type MessagesType = {
-  id: number
-  message: string
-}
+
+
+
 export type FriendsType = {
   id: number
   name: string

@@ -3,7 +3,8 @@ import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {ProfileUserType, setUserProfile} from "../../redux/profile-reducer";
-import {StateType} from "../../redux/store";
+import {RootStateType} from "../../redux/redux-store";
+
 
 type ProfileContainerPropsType = {
   profile: ProfileUserType | null
@@ -24,7 +25,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
   }
 }
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: RootStateType) => ({
   profile: state.profilePage.profile
 })
 

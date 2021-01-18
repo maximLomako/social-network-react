@@ -1,14 +1,23 @@
-import {DialogsType, MessagesType} from "./store";
 import {addPostAC, updateNewPostTextAC} from "./profile-reducer";
 
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 
-export type ActionsTypes = ReturnType<typeof addPostAC>
+export type DialogsActionsTypes = ReturnType<typeof addPostAC>
   | ReturnType<typeof updateNewPostTextAC>
   | ReturnType<typeof sendMessageAC>
   | ReturnType<typeof updateNewMessageBodyAC>
 
+export type MessagesType = {
+  id: number
+  message: string
+}
+
+export type DialogsType = {
+  id: number
+  name: string
+  avatar: string
+}
 
 export type DialogsPageType = {
   dialogs: Array<DialogsType>
@@ -50,16 +59,16 @@ const initialState = {
   newMessageBody: ''
 }
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionsTypes) => {
   switch (action.type) {
-    case "SEND-MESSAGE": {
+    case SEND_MESSAGE: {
       return {
         ...state,
         newMessageBody: '',
         messages: [...state.messages, {id: 6, message: state.newMessageBody}]
       };
     }
-    case "UPDATE-NEW-MESSAGE-BODY":
+    case UPDATE_NEW_MESSAGE_BODY:
       return {
         ...state,
         newMessageBody: action.body

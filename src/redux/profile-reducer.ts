@@ -1,5 +1,4 @@
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
-import {PostsType} from "./store";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -32,7 +31,11 @@ export type ProfileUserType = {
     large: string | null
   }
 }
-
+export type PostsType = {
+  id: number
+  message: string
+  likeCount: number
+}
 export type ProfilePageType = {
   posts: Array<PostsType>
   newPostText: string

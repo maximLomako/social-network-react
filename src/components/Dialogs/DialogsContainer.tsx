@@ -5,7 +5,8 @@ import {DispatchType} from "../Profile/MyPosts/MyPostsContainer";
 import {RootStateType} from "../../redux/redux-store";
 
 const mapStateToProps = (state: RootStateType) => ({
-  dialogsPage: state.dialogsPage
+  dialogsPage: state.dialogsPage,
+  isAuth: state.auth.isAuth
 })
 const mapDispatchToProps = (dispatch: DispatchType) => ({
   sendMessage: () => {

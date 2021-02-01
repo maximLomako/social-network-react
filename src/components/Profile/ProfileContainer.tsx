@@ -1,11 +1,10 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {ProfileUserType, setUserProfile} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
-import {withRouter, RouteComponentProps} from "react-router-dom";
-import {getUserProfile} from "../../api/api";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
 
 type OwnProfileContainerPropsType = {
@@ -25,7 +24,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     if (!userId) {
       userId = '2'
     }
-    getUserProfile(userId)
+    usersAPI.getUserProfile(userId)
       .then(data => {
         this.props.setUserProfile(data);
       })

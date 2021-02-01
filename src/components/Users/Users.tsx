@@ -3,7 +3,6 @@ import s from "./users.module.css";
 import userPhoto from "../../assets/images/user.webp";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {followUser, unFollowUser} from "../../api/api";
 
 type UsersPropsType = {
   users: UsersType
@@ -11,11 +10,9 @@ type UsersPropsType = {
   pageSize: number
   currentPage: number
   onPageChanged: (pageNumber: number) => void
-  follow: (userID: number) => void
-  unFollow: (userID: number) => void
+  follow: any
+  unFollow: any
   followingInProgress: [] | Array<number>
-  toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
-
 }
 
 const Users: React.FC<UsersPropsType> = (props) => {
@@ -46,26 +43,12 @@ const Users: React.FC<UsersPropsType> = (props) => {
             ? <button
               disabled={props.followingInProgress.some(id => id === u.id)}
               onClick={() => {
-                props.toggleIsFollowingProgress(true, u.id);
-                unFollowUser(u.id).then(data => {
-                  if (data.resultCode === 0) {
-                    props.unFollow(u.id)
-                  }
-                  props.toggleIsFollowingProgress(false, u.id);
-                })
-
-              }}>unfollow</button>
+                props.unFollow(u.id)
+              }}>unFollow</button>
             : <button
               disabled={props.followingInProgress.some(id => id === u.id)}
               onClick={() => {
-                props.toggleIsFollowingProgress(true, u.id);
-                followUser(u.id)
-                  .then(data => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id)
-                    }
-                    props.toggleIsFollowingProgress(false, u.id);
-                  })
+                props.follow(u.id)
 
               }}>follow</button>}
         </div>

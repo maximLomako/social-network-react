@@ -1,5 +1,6 @@
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {usersAPI} from "../api/api";
+import {ThunkType} from "./users-reducer";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -83,7 +84,7 @@ export const updateNewPostTextAC = (text: string) =>
 export const setUserProfile = (profile: ProfileUserType | null) =>
   ({type: SET_USERS_PROFILE, profile} as const)
 
-export const getUserProfile = (userId: string) => (dispatch: (action: ActionsTypes) => void) => {
+export const getUserProfile = (userId: string): ThunkType => (dispatch: (action: ActionsTypes) => void) => {
   if (!userId) {
     userId = '2'
   }

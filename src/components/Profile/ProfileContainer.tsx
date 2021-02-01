@@ -1,14 +1,13 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile, ProfileUserType, setUserProfile} from "../../redux/profile-reducer";
+import {getUserProfile, ProfileUserType} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 
 type OwnProfileContainerPropsType = {
   profile: ProfileUserType | null
-  setUserProfile: (profile: ProfileUserType | null) => void
   getUserProfile: any
 }
 
@@ -36,4 +35,4 @@ const mapStateToProps = (state: RootStateType) => ({
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {setUserProfile, getUserProfile})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);

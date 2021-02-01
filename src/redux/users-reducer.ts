@@ -116,7 +116,7 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: (a
   })
 }
 
-export const follow = (userId: number) => (dispatch: (action: ActionsTypes) => void) => {
+export const follow = (userId: number): ThunkType => (dispatch) => {
   dispatch(toggleIsFollowingProgress(true, userId));
   usersAPI.followUser(userId)
     .then(data => {
@@ -127,7 +127,7 @@ export const follow = (userId: number) => (dispatch: (action: ActionsTypes) => v
     })
 }
 
-export const unFollow = (userId: number) => (dispatch: (action: ActionsTypes) => void) => {
+export const unFollow = (userId: number): ThunkType => (dispatch) => {
   dispatch(toggleIsFollowingProgress(true, userId));
   usersAPI.unFollowUser(userId)
     .then(data => {

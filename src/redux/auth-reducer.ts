@@ -1,3 +1,6 @@
+import {authAPI} from "../api/api";
+import {ThunkType} from "./users-reducer";
+
 const SET_USER_DATE = 'SET-USER-DATE';
 
 export type AuthPageType = {
@@ -27,6 +30,16 @@ export const authReducer = (state: AuthPageType = initialState, action: AuthActi
     default :
       return state
   }
+}
+
+export const getAuthUserData = (): ThunkType => (dispatch: (action: AuthActionsType) => void) => {
+  authAPI.me()
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        const {id, email, login} = response.data.data
+        dispatch(setAuthUserData(id, email, login));
+      }
+    })
 }
 
 export const setAuthUserData = (userId: number, email: string, login: string) =>

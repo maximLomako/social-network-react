@@ -4,6 +4,7 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {RootStateType} from "../../redux/redux-store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type UsersPropsType = {
   users: UsersType
@@ -58,8 +59,8 @@ const mapStateToProps = (state: RootStateType) => ({
 })
 
 
-export default connect(mapStateToProps,
+export default withAuthRedirect(connect(mapStateToProps,
   {
     follow, unFollow,
     setCurrentPage, getUsers
-  })(UsersContainer);
+  })(UsersContainer));

@@ -22,8 +22,23 @@ export const usersAPI = {
       .then(response => response.data);
   },
   getUserProfile: (userId: string) => {
+    console.warn("Please use ProfileAPI object")
+    return profileAPI.getUserProfile(userId);
+  }
+}
+
+export const profileAPI = {
+  getUserProfile: (userId: string) => {
     return instance.get(`profile/${userId}`)
       .then(response => response.data);
+  },
+  getUserStatus: (userId: string) => {
+    return instance.get(`profile/status/${userId}`)
+      .then(response => response);
+  },
+  updateUserStatus: (status: string) => {
+    return instance.put(`profile/status`, {status: status})
+      .then(response => response);
   }
 }
 
